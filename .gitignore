@@ -1,0 +1,12 @@
+## ignore libraries installed via npm
+node_modules/
+
+## ignore npm error logs
+npm-debug.log
+
+## ignore db files
+db/
+development/
+
+## ignore .DS_STORE files
+.DS_Store

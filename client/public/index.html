@@ -1,0 +1,59 @@
+<!-- Only here for testing purposes -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Readings</title>
+  </head>
+  <body>
+    <h1>API Testing</h1>
+    
+    <form onsubmit="insertData(event)">
+      Serial:<br>
+      <input type="text" name="serial" id="serial" value=""><br>
+      Reading:<br>
+      <input type="text" name="reading" id="reading" value="">
+      <input type="submit" value="Submit">
+    </form>
+
+    <button type="button" onclick="getCounts(event)">Get Counts</button>
+   
+<script type="text/javascript">
+// Fetch is supported in Chrome, might switch out for more browser-friendly alternative
+// These scripts are only to test endpoints through front-end
+function getCounts(e) {
+  e.preventDefault();
+  fetch(window.location + 'count', {
+    method: 'GET',
+  })
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (data) {
+    console.log('here is your data: ', data);
+  })
+  .catch(function (err) {
+    throw new Error(err);
+  });
+};
+
+function insertData(e) {
+  e.preventDefault();
+  var serial = document.getElementById('serial').value;
+  var reading = document.getElementById('reading').value;
+  fetch(window.location + '?serial=' + serial + '&reading=' + reading, {
+    method: 'GET',
+  })
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (param) {
+    console.log('Success!', param);
+  })
+  .catch(function (err) {
+    throw new Error(err);
+  });
+};
+
+</script>
+  </body>
+</html>
